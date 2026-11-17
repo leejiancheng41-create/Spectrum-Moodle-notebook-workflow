@@ -145,7 +145,7 @@ def current_matches(items):
                 continue
             h, m = map(int, t["time"].split(":"))
             start = now.replace(hour=h, minute=m, second=0, microsecond=0)
-            if start - timedelta(minutes=15) <= now <= start + timedelta(minutes=60):
+            if start - timedelta(minutes=15) <= now <= start + timedelta(minutes=120):
                 hits.append(k)
                 break
     return hits
