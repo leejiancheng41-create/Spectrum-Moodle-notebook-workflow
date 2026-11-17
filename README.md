@@ -187,4 +187,50 @@ python notebooklm_pipeline.py --yes
 
 ---
 
+### 5.attendence
+
+A tiny CLI that opens the right Spectrum (Moodle) Attendance page with one command. It only opens the page in your browser — you still tick **Present** and submit yourself.
+
+## Features
+
+- Syncs all Attendance pages from your active courses via the Moodle web service API
+- Skips ended courses and activities that aren't available to you
+- Lets you set one or more weekly class times per activity
+- Shows only the class that is on right now (from 15 min before start to 2 h after)
+- Opens any class by number or fuzzy keyword
+
+## Setup
+
+1. Put `att.py` and `token.txt` in the same folder.
+2. `token.txt`:
+   - One line: your token (uses `https://spectrum.um.edu.my`)
+   - Two lines: site URL, then token (for another Moodle site)
+3. Run `python att.py sync`.
+
+> Add `token.txt` and `.att.json` to your `.gitignore` — don't commit your token.
+
+## Commands
+
+| Command | Description |
+|---|---|
+| `python att.py` | Show classes happening now; press Enter to open |
+| `python att.py <keyword>` | Open a class by fuzzy name match, e.g. `python att.py hsm` |
+| `python att.py sync` | Fetch all Attendance pages (keeps your saved times) |
+| `python att.py list` | List saved classes |
+| `python att.py sched <id/keyword> <mon..sun> <HH:MM>` | Add a class time (can add several per class) |
+| `python att.py unsched <id/keyword> <mon..sun> <HH:MM>` | Remove one class time |
+| `python att.py unsched <id/keyword> all` | Clear all times for a class |
+| `python att.py add <name> <url>` | Manually add a class, e.g. `.../mod/attendance/view.php?id=1126419` |
+| `python att.py rm <id/keyword>` | Remove a class |
+
+## Example
+
+```bash
+python att.py sync
+python att.py sched 1 mon 10:00
+python att.py sched 1 thu 14:00
+python att.py          # during class time → Enter to open
+```
+
+
 *Happy studying with Oh~ Potato~~! *
