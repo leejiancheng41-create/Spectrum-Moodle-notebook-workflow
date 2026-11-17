@@ -21,6 +21,7 @@ This toolkit streamlines checking announcements, tracking assignment deadlines, 
 - **⏰ Deadlines Tracker**: Color-coded assignment & quiz tracker sorted by urgency. Supports hiding unwanted tasks and opening submission portals.
 - **📥 Smart Slide Downloader**: Selectively downloads PPTs/PDFs/DOCXs, organizes lecture notes by week (e.g., L1/L2 $\rightarrow$ Week 1/2), and tracks file modifications to avoid duplicate downloads.
 - **🧠 Google NotebookLM AI Pipeline**: Synchronizes weekly course materials to Google NotebookLM notebooks and auto-generates study quizzes and flashcards using custom prompts.
+- **📰 convenient attendance**: help you to open the page of attendance in the class duration
 
 ---
 
