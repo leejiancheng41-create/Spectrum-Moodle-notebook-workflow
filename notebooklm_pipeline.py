@@ -44,7 +44,21 @@ from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 
-from notebooklm import NotebookLMClient, RateLimitError
+try:
+    from notebooklm import NotebookLMClient, RateLimitError
+except ImportError as ImportError:  # pragma: no cover - resolved at runtime when the package is installed
+    class RateLimitError(Exception):
+        """Fallback for environments without the external notebooklm package."""
+
+    class NotebookLMClient:
+        """Fallback client stub that raises a clear installation error on use."""
+
+        @classmethod
+        def from_storage(cls, *args, **kwargs):
+            raise ImportError(
+                "The 'notebooklm' package is required to run this script. "
+                f"Install it in this Python environment with: {sys.executable} -m pip install notebooklm-py"
+            ) from ImportError
 
 # ============ 配置 ============
 OUT_DIR = Path("UM_Courses")        # 和 spectrum_download.py 一致
