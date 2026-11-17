@@ -38,6 +38,7 @@ import asyncio
 import hashlib
 import logging
 import re
+import subprocess
 import sys
 from dataclasses import dataclass, field
 from enum import Enum
@@ -531,6 +532,11 @@ def parse_args():
 async def main():
     args = parse_args()
 
+       # 每次运行前先重新登录，避免 AuthError: Authentication expired or invalid
+    print("🔑 运行 notebooklm login …")
+    if subprocess.run(["notebooklm", "login"]).returncode != 0:
+        sys.exit("❌ notebooklm login 失败，已终止。")
+       
     local, unsupported = scan_local()
     if unsupported:
         names = "、".join(p.name for p in unsupported[:5]) + ("…" if len(unsupported) > 5 else "")
